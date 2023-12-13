@@ -1,0 +1,94 @@
+body {
+  background-color: bisque;
+  height: 100vh;
+  width: 100vw;
+}
+#head {
+  display: block;
+  text-align: center;
+}
+
+#bodyTitle {
+  font-size: 50px;
+}
+#addMovieBtn,
+#seeMovieBtn {
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+#form {
+  margin: 50px;
+  display: none;
+  justify-content: center;
+}
+
+#movieForm {
+  width: 800px;
+  height: 250px;
+  border: 2px solid black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#movie-title,
+#genre,
+#releaseDate,
+#submitFormBtn {
+  font-size: xx-large;
+}
+#submitFormBtn {
+}
+#confirmation {
+  display: none;
+  /* position: fixed;
+  padding: 25px;
+  padding-bottom: 15px;
+  width: 1200px;
+  left: 26%;
+  height: 770px;
+  top: 15%;
+  background-color: azure;
+  /* background-image: linear-gradient(to right, blue, black); */
+  /* z-index: 20; */
+}
+#confirm-msg {
+  font-size: 50px;
+  text-align: center;
+}
+#movieList {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#movie-article {
+  margin: 10px;
+  text-align: center;
+  height: 250px;
+  width: 450px;
+  padding: 30px;
+  border: 2px solid black;
+}
+#movie-name {
+  font-size: xx-large;
+  margin-top: 10px;
+}
+#movie-genre {
+  font-size: x-large;
+}
+#movie-releaseDate {
+  font-size: x-large;
+}
+#watched-toggleBtn,
+#delete-Btn {
+  margin: 30px;
+  margin-top: 10px;
+  height: 40px;
+  width: 150px;
+  font-size: 20px;
+  border-radius: 6px;
+}
