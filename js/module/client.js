@@ -7,9 +7,6 @@ import {
   where,
   updateDoc,
   doc,
-  startAt,
-  orderBy,
-  endAt,
   deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
@@ -21,10 +18,6 @@ async function checkTitle(title) {
     );
 
     const movieList = await getDocs(queryTitleName);
-    // movieList.forEach((movie) => {
-    //   console.log(movie.data());
-    // });
-
     return movieList;
   } catch (error) {
     console.log(`ERROR: ${error}`);
