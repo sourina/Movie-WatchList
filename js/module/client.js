@@ -13,20 +13,18 @@ import {
   deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-async function checkTitle(event) {
-  console.log(event);
+async function checkTitle(title) {
   try {
     const queryTitleName = query(
       collection(db, "movie"),
-      orderBy("title"),
-      startAt(event),
-      endAt(event + "\uf8ff")
+      where("title", "==", title.toUpperCase())
     );
-    console.log(queryTitleName);
+
     const movieList = await getDocs(queryTitleName);
     // movieList.forEach((movie) => {
     //   console.log(movie.data());
     // });
+
     return movieList;
   } catch (error) {
     console.log(`ERROR: ${error}`);
@@ -36,7 +34,7 @@ async function checkTitle(event) {
 async function saveMovie(movie) {
   try {
     await addDoc(collection(db, "movie"), {
-      title: movie.title,
+      title: movie.title.toUpperCase(),
       genre: movie.genre,
       releaseDate: movie.releaseDate,
       watched: false,

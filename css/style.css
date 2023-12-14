@@ -4,7 +4,6 @@ body {
   width: 100vw;
 }
 #head {
-  display: block;
   text-align: center;
 }
 
@@ -12,11 +11,16 @@ body {
   font-size: 50px;
 }
 #addMovieBtn,
-#seeMovieBtn {
+#seeMovieBtn,
+#hideMovieBtn {
   height: 100px;
   width: 100px;
   border-radius: 10px;
   font-size: 20px;
+  display: inline;
+}
+#hideMovieBtn {
+  display: none;
 }
 
 #form {

@@ -12,7 +12,8 @@ const movieSection = document.querySelector("#movieList");
 const confirmationSection = document.querySelector("#confirmation");
 
 function showAddMovieForm() {
-  document.getElementById("seeMovieBtn").innerText = "See MovieList";
+  // document.getElementById("seeMovieBtn").innerText = "See MovieList";
+
   //headSection.style.display = "none";
   formSection.style.display = "flex";
   movieSection.style.display = "none";
@@ -26,18 +27,18 @@ function showAddMovieForm() {
   const titleElem = document.createElement("input");
 
   titleElem.setAttribute("type", "text");
-  // titleElem.setAttribute("required", "required");
-  //titleElem.required = true;
+
+  // titleElem.required = true;
   titleElem.setAttribute("placeholder", "Title:");
   titleElem.setAttribute("id", "movie-title");
-  titleElem.addEventListener("keyup", async (e) => {
-    console.log(e.target.value);
-    const movieL = await checkTitle(e.target.value);
-    if (movieL.empty) {
-      console.log("empty");
-      submitButtonElem.removeAttribute("disabled");
-    }
-  });
+  // titleElem.addEventListener("keyup", async (e) => {
+  //   console.log(e.target.value);
+  //   const movieL = await checkTitle(e.target.value);
+  //   if (movieL.empty) {
+  //     console.log("empty");
+  //     submitButtonElem.removeAttribute("disabled");
+  //   }
+  // });
 
   const genreElem = document.createElement("select");
   genreElem.options.add(new Option("Genre:"));
@@ -54,7 +55,7 @@ function showAddMovieForm() {
 
   const submitButtonElem = document.createElement("input");
   submitButtonElem.setAttribute("type", "button");
-  submitButtonElem.setAttribute("disabled", "");
+  // submitButtonElem.setAttribute("disabled", "");
   submitButtonElem.setAttribute("id", "submitFormBtn");
   submitButtonElem.value = "submit";
 
@@ -64,16 +65,28 @@ function showAddMovieForm() {
   formElem.append(submitButtonElem);
 
   formSection.append(formElem);
+  // document.getElementById("movie-title").required = true;
 }
 
-function successConfirmation(title) {
+function successConfirmation(title, isPresent) {
   confirmationSection.innerHTML = "";
   formSection.style.display = "none";
   confirmationSection.style.display = "block";
   const titleElem = document.createElement("p");
   titleElem.setAttribute("id", "confirm-msg");
-  titleElem.innerText =
-    title.charAt(0).toUpperCase() + title.substring(1) + " Added Successfully";
+  if (isPresent) {
+    titleElem.innerText =
+      title.charAt(0).toUpperCase() +
+      title.substring(1) +
+      " Added Successfully";
+  } else {
+    titleElem.innerText =
+      title.charAt(0).toUpperCase() +
+      title.substring(1) +
+      " Is Already Present";
+  }
+  // titleElem.innerText =
+  //   title.charAt(0).toUpperCase() + title.substring(1) + " Added Successfully";
 
   // const backButtonElem = document.createElement("input");
   // backButtonElem.setAttribute("type", "button");
@@ -99,7 +112,8 @@ function successConfirmation(title) {
 }
 
 function showMovieWatchList(movie, id) {
-  document.getElementById("seeMovieBtn").innerText = "Hide MovieList";
+  document.getElementById("seeMovieBtn").style.display = "none";
+  document.getElementById("hideMovieBtn").style.display = "inline";
   //headSection.style.display = "flex";
   formSection.style.display = "none";
   movieSection.style.display = "flex";
@@ -158,9 +172,14 @@ function showMovieWatchList(movie, id) {
   articleElem.append(deleteButtonElem);
 
   movieSection.append(articleElem);
-  document.querySelector("#seeMovieBtn").addEventListener("click", function () {
-    location.reload();
-  });
+  document
+    .querySelector("#hideMovieBtn")
+    .addEventListener("click", function () {
+      location.reload();
+    });
+  // //document.querySelector("#addMovieBtn").addEventListener("click", function () {
+  //   location.reload();
+  // });
 }
 
 async function displayUpdatedMovieList() {

@@ -1,4 +1,4 @@
-import { saveMovie, getMovieWatchList } from "./module/client.js";
+import { saveMovie, getMovieWatchList, checkTitle } from "./module/client.js";
 import {
   showAddMovieForm,
   showMovieWatchList,
@@ -12,7 +12,6 @@ const formSection = document.querySelector("#form");
 const confirmationSection = document.querySelector("#confirmation");
 
 addBtnElem.addEventListener("click", function () {
-  console.log("add");
   formSection.innerHTML = "";
   confirmationSection.innerHTML = "";
   showAddMovieForm();
@@ -20,9 +19,10 @@ addBtnElem.addEventListener("click", function () {
 });
 
 seeBtnElem.addEventListener("click", async function () {
+  movieSection.innerHTML = "";
   console.log("see");
   confirmationSection.innerHTML = "";
-  movieSection.innerHTML = "";
+
   console.log("see1");
   const movieList = await getMovieWatchList();
 
@@ -37,14 +37,33 @@ seeBtnElem.addEventListener("click", async function () {
 
 function addMovieListener() {
   const buttonElem = document.querySelector("#submitFormBtn");
-  buttonElem.addEventListener("click", function () {
+  buttonElem.addEventListener("click", async function () {
     const movie = {
       title: document.getElementById("movie-title").value,
       genre: document.getElementById("genre").value,
       releaseDate: document.getElementById("releaseDate").value,
     };
-    saveMovie(movie);
-    successConfirmation(movie.title);
+    if (
+      movie.title == "" ||
+      movie.genre == "Genre:" ||
+      movie.releaseDate == ""
+    ) {
+      if (document.getElementById("validInputMsg") == undefined) {
+        const enterMsgElem = document.createElement("p");
+        enterMsgElem.setAttribute("id", "validInputMsg");
+        enterMsgElem.innerText = "Please enter valid input";
+        formSection.append(enterMsgElem);
+        return;
+      }
+    } else {
+      const movieListWithTitle = await checkTitle(movie.title);
+      if (movieListWithTitle.empty) {
+        saveMovie(movie);
+        successConfirmation(movie.title, true);
+      } else {
+        successConfirmation(movie.title, false);
+      }
+    }
   });
 }
 
