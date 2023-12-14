@@ -5,6 +5,8 @@ const movieSection = document.querySelector("#movieList");
 const confirmationSection = document.querySelector("#confirmation");
 
 function showAddMovieForm() {
+  document.getElementById("seeMovieBtn").style.display = "inline";
+  document.getElementById("hideMovieBtn").style.display = "none";
   formSection.style.display = "flex";
   movieSection.style.display = "none";
 
