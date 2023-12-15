@@ -150,5 +150,5 @@ input[type="date"]:valid:before {
   font-size: xx-large;
   position: absolute;
   top: 750px;
-  right: 650px;
+  right: 350px;
 }
