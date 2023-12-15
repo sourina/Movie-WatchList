@@ -1,4 +1,4 @@
-//handling displays
+//responsible to build UI based on user action
 
 import { updateWatched, deleteMovie, getMovieWatchList } from "./client.js";
 

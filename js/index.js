@@ -39,6 +39,8 @@ seeBtnElem.addEventListener("click", async function () {
 
 searchBtnElem.addEventListener("click", async function () {
   const searchedInput = document.getElementById("searchInput").value;
+  document.getElementById("seeMovieBtn").style.display = "inline";
+  document.getElementById("hideMovieBtn").style.display = "none";
   //checking user input is empty
   if (searchedInput == "") {
     formSection.style.display = "none";

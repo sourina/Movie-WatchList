@@ -4,18 +4,19 @@ body {
   text-align: center;
   background: rgb(180, 179, 179);
 }
-#head {
-  text-align: center;
-}
 #logo {
   height: 250px;
   width: 400px;
   border: 8px solid gray;
 }
-#bodyTitle {
+#head {
+  text-align: center;
+}
+
+#head #bodyTitle {
   font-size: 50px;
 }
-#searchForm {
+#head #searchForm {
   height: 50px;
   width: 350px;
   text-align: right;
@@ -24,18 +25,18 @@ body {
   right: 30px;
 }
 
-#searchInput {
+#head #searchForm #searchInput {
   height: 60px;
   width: 300px;
   font-size: xx-large;
 }
-#searchBtn {
+#head #searchForm #searchBtn {
   font-size: xx-large;
 }
 
-#addMovieBtn,
-#seeMovieBtn,
-#hideMovieBtn {
+#head #addMovieBtn,
+#head #seeMovieBtn,
+#head #hideMovieBtn {
   height: 100px;
   width: 200px;
   border-radius: 10px;
@@ -43,7 +44,7 @@ body {
   display: inline;
   margin: 30px;
 }
-#hideMovieBtn {
+#head #hideMovieBtn {
   display: none;
 }
 
@@ -53,7 +54,7 @@ body {
   justify-content: center;
 }
 
-#movieForm {
+#form #movieForm {
   width: 800px;
   height: 250px;
   border: 2px solid black;
@@ -62,17 +63,17 @@ body {
   flex-direction: column;
   justify-content: space-around;
 }
-#movie-title,
-#genre,
-#releaseDate,
-#submitFormBtn {
+#form #movieForm #movie-title,
+#form #movieForm #genre,
+#form #movieForm #releaseDate,
+#form #movieForm #submitFormBtn {
   font-size: xx-large;
 }
 
 #confirmation {
   display: none;
 }
-#confirm-msg {
+#confirmation #confirm-msg {
   font-size: 50px;
   text-align: center;
 }
@@ -82,7 +83,7 @@ body {
   justify-content: space-around;
   align-items: center;
 }
-#movie-article {
+#movieList #movie-article {
   margin: 10px;
   text-align: center;
   height: 250px;
@@ -90,29 +91,24 @@ body {
   padding: 30px;
   border: 2px solid black;
 }
-#movie-name {
+#movieList #movie-article #movie-name {
   font-size: xx-large;
   margin-top: 10px;
 }
-#movie-genre {
+#movieList #movie-article #movie-genre {
   font-size: x-large;
 }
-#movie-releaseDate {
+#movieList #movie-article #movie-releaseDate {
   font-size: x-large;
 }
-#watched-toggleBtn,
-#delete-Btn {
+#movieList #movie-article #watched-toggleBtn,
+#movieList #movie-article #delete-Btn {
   margin: 30px;
   margin-top: 10px;
   height: 40px;
   width: 150px;
   font-size: 20px;
   border-radius: 6px;
-}
-#footerImg {
-  height: 100px;
-  width: 90px;
-  border: 1px solid black;
 }
 #footer {
   display: flex;
@@ -124,7 +120,12 @@ body {
   padding-bottom: 30px;
   border: 1px solid gray;
 }
-#footerContact {
+#footer #footerImg {
+  height: 100px;
+  width: 90px;
+  border: 1px solid black;
+}
+#footer #footerContact {
   font-size: xx-large;
 }
 input[type="date"]:before {
@@ -136,22 +137,18 @@ input[type="date"]:focus:before,
 input[type="date"]:valid:before {
   content: "";
 }
-#emptyMsg {
+#movieList #emptyMsg {
   font-size: 60px;
 }
-#main {
-  display: block;
-}
-#searchValidInputMsg {
+#confirmation #searchValidInputMsg {
   font-size: x-large;
-
   position: absolute;
   top: 50px;
   right: 360px;
 }
-#formValidInputMsg {
+#form #formValidInputMsg {
   font-size: xx-large;
   position: absolute;
   top: 750px;
-  right: 450px;
+  right: 650px;
 }
