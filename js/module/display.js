@@ -1,9 +1,12 @@
+//handling displays
+
 import { updateWatched, deleteMovie, getMovieWatchList } from "./client.js";
 
 const formSection = document.querySelector("#form");
 const movieSection = document.querySelector("#movieList");
 const confirmationSection = document.querySelector("#confirmation");
 
+//displaying form for user input
 function showAddMovieForm() {
   document.getElementById("seeMovieBtn").style.display = "inline";
   document.getElementById("hideMovieBtn").style.display = "none";
@@ -16,9 +19,7 @@ function showAddMovieForm() {
 
   // Create input elements for form
   const titleElem = document.createElement("input");
-
   titleElem.setAttribute("type", "text");
-
   titleElem.setAttribute("placeholder", "Title:");
   titleElem.setAttribute("id", "movie-title");
 
@@ -32,7 +33,6 @@ function showAddMovieForm() {
   const releaseDateElem = document.createElement("input");
   releaseDateElem.setAttribute("type", "date");
   releaseDateElem.setAttribute("placeholder", "Release Date:");
-
   releaseDateElem.setAttribute("id", "releaseDate");
 
   const submitButtonElem = document.createElement("input");
@@ -48,10 +48,12 @@ function showAddMovieForm() {
   formSection.append(formElem);
 }
 
-function successConfirmation(title, isPresent) {
+//displaying confirmation message on form submit
+function confirmationMsg(title, isPresent) {
   confirmationSection.innerHTML = "";
   formSection.style.display = "none";
   confirmationSection.style.display = "block";
+
   const titleElem = document.createElement("p");
   titleElem.setAttribute("id", "confirm-msg");
   if (isPresent) {
@@ -69,11 +71,13 @@ function successConfirmation(title, isPresent) {
   confirmationSection.append(titleElem);
 }
 
+//displaying movies
 function showMovieWatchList(movie, id) {
   document.getElementById("seeMovieBtn").style.display = "none";
   document.getElementById("hideMovieBtn").style.display = "inline";
   formSection.style.display = "none";
   movieSection.style.display = "flex";
+  confirmationSection.style.display = "none";
 
   //dynamically create article to display saved movie watchlist
   const articleElem = document.createElement("article");
@@ -88,8 +92,7 @@ function showMovieWatchList(movie, id) {
   watchedButtonElem.setAttribute("id", "watched-toggleBtn");
   watchedButtonElem.setAttribute("type", "button");
 
-  //toggle display text
-
+  //toggle display text of watched button
   if (movie.watched) {
     watchedButtonElem.value = "watched";
   } else {
@@ -129,6 +132,8 @@ function showMovieWatchList(movie, id) {
   articleElem.append(deleteButtonElem);
 
   movieSection.append(articleElem);
+
+  //refreshing the page
   document
     .querySelector("#hideMovieBtn")
     .addEventListener("click", function () {
@@ -136,12 +141,44 @@ function showMovieWatchList(movie, id) {
     });
 }
 
+//display updated movies list after delete
 async function displayUpdatedMovieList() {
   movieSection.innerHTML = "";
   const updatedMovieList = await getMovieWatchList();
-  updatedMovieList.forEach((movie) => {
-    showMovieWatchList(movie.data(), movie.id);
-  });
+
+  //checking if movie list is empty
+  if (updatedMovieList.empty) {
+    showEmptyMessage();
+  } else {
+    updatedMovieList.forEach((movie) => {
+      showMovieWatchList(movie.data(), movie.id);
+    });
+  }
 }
 
-export { showAddMovieForm, showMovieWatchList, successConfirmation };
+//display empty message if no movies present
+function showEmptyMessage() {
+  document.getElementById("seeMovieBtn").style.display = "none";
+  document.getElementById("hideMovieBtn").style.display = "inline";
+  formSection.style.display = "none";
+  movieSection.style.display = "flex";
+  confirmationSection.style.display = "none";
+
+  const msgElem = document.createElement("p");
+  msgElem.setAttribute("id", "emptyMsg");
+  msgElem.innerText = "No Movies Present";
+  movieSection.append(msgElem);
+
+  document
+    .querySelector("#hideMovieBtn")
+    .addEventListener("click", function () {
+      location.reload();
+    });
+}
+
+export {
+  showAddMovieForm,
+  showMovieWatchList,
+  confirmationMsg,
+  showEmptyMessage,
+};

@@ -1,4 +1,6 @@
-import { db } from "../firebaseConfig.js";
+//handling interaction with database
+
+import { db } from "./firebaseConfig.js";
 import {
   addDoc,
   collection,
@@ -10,6 +12,7 @@ import {
   deleteDoc,
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
+//checking if movie title is already present
 async function checkTitle(title) {
   try {
     const queryTitleName = query(
@@ -24,6 +27,7 @@ async function checkTitle(title) {
   }
 }
 
+//saving movie object
 async function saveMovie(movie) {
   try {
     await addDoc(collection(db, "movie"), {
@@ -37,6 +41,7 @@ async function saveMovie(movie) {
   }
 }
 
+//getting all movie object
 async function getMovieWatchList() {
   try {
     const movieList = await getDocs(collection(db, "movie"));
@@ -46,6 +51,7 @@ async function getMovieWatchList() {
   }
 }
 
+//updating movie object field "watched"
 async function updateWatched(id, isWatched) {
   try {
     await updateDoc(doc(db, "movie", id), {
@@ -56,6 +62,7 @@ async function updateWatched(id, isWatched) {
   }
 }
 
+//deleting a movie
 async function deleteMovie(id) {
   try {
     await deleteDoc(doc(db, "movie", id));

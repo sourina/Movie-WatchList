@@ -1,23 +1,47 @@
 body {
-  background-color: bisque;
   height: 100vh;
   width: 100vw;
+  text-align: center;
+  background: rgb(180, 179, 179);
 }
 #head {
   text-align: center;
 }
-
+#logo {
+  height: 250px;
+  width: 400px;
+  border: 8px solid gray;
+}
 #bodyTitle {
   font-size: 50px;
 }
+#searchForm {
+  height: 50px;
+  width: 350px;
+  text-align: right;
+  position: absolute;
+  top: 50px;
+  right: 30px;
+}
+
+#searchInput {
+  height: 60px;
+  width: 300px;
+  font-size: xx-large;
+}
+#searchBtn {
+  font-size: xx-large;
+}
+
 #addMovieBtn,
 #seeMovieBtn,
 #hideMovieBtn {
   height: 100px;
-  width: 100px;
+  width: 200px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 25px;
   display: inline;
+  margin: 30px;
 }
 #hideMovieBtn {
   display: none;
@@ -44,20 +68,9 @@ body {
 #submitFormBtn {
   font-size: xx-large;
 }
-#submitFormBtn {
-}
+
 #confirmation {
   display: none;
-  /* position: fixed;
-  padding: 25px;
-  padding-bottom: 15px;
-  width: 1200px;
-  left: 26%;
-  height: 770px;
-  top: 15%;
-  background-color: azure;
-  /* background-image: linear-gradient(to right, blue, black); */
-  /* z-index: 20; */
 }
 #confirm-msg {
   font-size: 50px;
@@ -95,4 +108,50 @@ body {
   width: 150px;
   font-size: 20px;
   border-radius: 6px;
+}
+#footerImg {
+  height: 100px;
+  width: 90px;
+  border: 1px solid black;
+}
+#footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 100px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border: 1px solid gray;
+}
+#footerContact {
+  font-size: xx-large;
+}
+input[type="date"]:before {
+  content: attr(placeholder) !important;
+  color: black;
+  margin-right: 0.5em;
+}
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+  content: "";
+}
+#emptyMsg {
+  font-size: 60px;
+}
+#main {
+  display: block;
+}
+#searchValidInputMsg {
+  font-size: x-large;
+
+  position: absolute;
+  top: 50px;
+  right: 360px;
+}
+#formValidInputMsg {
+  font-size: xx-large;
+  position: absolute;
+  top: 750px;
+  right: 450px;
 }
